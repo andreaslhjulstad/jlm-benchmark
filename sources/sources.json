@@ -430742,7 +430742,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430758,7 +430758,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430774,7 +430774,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430790,7 +430790,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430806,7 +430806,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -430841,7 +430841,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430857,7 +430857,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430873,7 +430873,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430889,7 +430889,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430905,7 +430905,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -430940,7 +430940,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430956,7 +430956,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430972,7 +430972,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -430988,7 +430988,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431004,7 +431004,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431020,7 +431020,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431056,7 +431056,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431072,7 +431072,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431088,7 +431088,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431104,7 +431104,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431120,7 +431120,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431155,7 +431155,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431171,7 +431171,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431187,7 +431187,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431203,7 +431203,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431219,7 +431219,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431254,7 +431254,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431270,7 +431270,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431286,7 +431286,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431302,7 +431302,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431318,7 +431318,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431353,7 +431353,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431369,7 +431369,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431385,7 +431385,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431401,7 +431401,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431417,7 +431417,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431452,7 +431452,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431468,7 +431468,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431484,7 +431484,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431500,7 +431500,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431516,7 +431516,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431551,7 +431551,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431567,7 +431567,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431583,7 +431583,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431599,7 +431599,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431615,7 +431615,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431650,7 +431650,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431666,7 +431666,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431682,7 +431682,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431698,7 +431698,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431714,7 +431714,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431749,7 +431749,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431765,7 +431765,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431781,7 +431781,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431797,7 +431797,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431813,7 +431813,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431848,7 +431848,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431864,7 +431864,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431880,7 +431880,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431896,7 +431896,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431912,7 +431912,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431928,7 +431928,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -431964,7 +431964,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431980,7 +431980,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -431996,7 +431996,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432012,7 +432012,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432028,7 +432028,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432044,7 +432044,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432060,7 +432060,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432097,7 +432097,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432113,7 +432113,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432129,7 +432129,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432145,7 +432145,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432161,7 +432161,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432196,7 +432196,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432212,7 +432212,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432228,7 +432228,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432244,7 +432244,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432260,7 +432260,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432295,7 +432295,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432311,7 +432311,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432327,7 +432327,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432343,7 +432343,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432359,7 +432359,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432394,7 +432394,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432410,7 +432410,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432426,7 +432426,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432442,7 +432442,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432458,7 +432458,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432493,7 +432493,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432509,7 +432509,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432525,7 +432525,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432541,7 +432541,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432557,7 +432557,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }
@@ -432592,7 +432592,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432608,7 +432608,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432624,7 +432624,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432640,7 +432640,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       },
@@ -432656,7 +432656,7 @@
           "-Iconfig/native/boards/default",
           "-Iconfig/native/chips/default",
           "-Iconfig/native",
-          "-DCPU_MHZ=1",
+          "-DCPU_MHZ=2400",
           "-DWARMUP_HEAT=1"
         ]
       }

@@ -304,15 +304,10 @@ def clean_temp_dir(temp_dir):
 
 
 def ensure_folder_exists(path):
-    if os.path.exists(path):
-        return
-    try:
-        os.mkdir(path)
-    except FileExistsError as e:
-        pass # Someone else made the folder, no biggie
+    os.makedirs(path, exist_ok=True)
 
 
-def compile_file(tasks, full_name, workdir, cfile, kind, extra_clang_flags, stats_dir,
+def compile_file(tasks, full_name, workdir, cfile, kind, extra_clang_flags, build_dir, stats_dir,
                  env_vars=None, opt_flags=None, jlm_opt_flags=None, jlm_opt_suffix=None):
     """
     Creates tasks for compiling the given file with the given arguments to clang.
@@ -334,9 +329,9 @@ def compile_file(tasks, full_name, workdir, cfile, kind, extra_clang_flags, stat
     if jlm_opt_suffix is None:
         jlm_opt_suffix = ""
 
-    clang_out = options.get_build_dir(f"{full_name}-clang-out.ll")
-    opt_out = options.get_build_dir(f"{full_name}-opt-out.ll")
-    jlm_opt_out = options.get_build_dir(f"{full_name}{jlm_opt_suffix}-jlm-opt-out.ll")
+    clang_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-clang-out.ll"))
+    opt_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-opt-out.ll"))
+    jlm_opt_out = os.path.abspath(os.path.join(build_dir, f"{full_name}{jlm_opt_suffix}-jlm-opt-out.ll"))
     stats_output = os.path.join(stats_dir, f"{full_name}{jlm_opt_suffix}.log")
     other_outputs = os.path.join(stats_dir, f"{full_name}{jlm_opt_suffix}")
 
@@ -383,7 +378,7 @@ def compile_file(tasks, full_name, workdir, cfile, kind, extra_clang_flags, stat
 
     return (clang_out, opt_out, jlm_opt_out)
 
-def compile_fortran_file(tasks, full_name, workdir, srcfile, extra_flags, env_vars=None):
+def compile_fortran_file(tasks, full_name, workdir, srcfile, extra_flags, build_dir, env_vars=None):
     """
     Creates a task for compiling the given fortran file with the given arguments.
     :param tasks: the list of tasks to append commands to
@@ -396,7 +391,7 @@ def compile_fortran_file(tasks, full_name, workdir, srcfile, extra_flags, env_va
     """
     assert "/" not in full_name
 
-    objectfile_out = options.get_build_dir(f"{full_name}.o")
+    objectfile_out = os.path.abspath(os.path.join(build_dir, f"{full_name}.o"))
 
     combined_env_vars = os.environ.copy()
     if env_vars is not None:
@@ -413,7 +408,7 @@ def compile_fortran_file(tasks, full_name, workdir, srcfile, extra_flags, env_va
 
     return objectfile_out
 
-def link_and_optimize(tasks, full_name, llfiles, direct_ofiles, stats_dir,
+def link_and_optimize(tasks, full_name, llfiles, direct_ofiles, build_dir, stats_dir,
                       env_vars=None, llvm_link_flags=None, opt_flags=None, jlm_opt_flags=None, clang_link_output=None, clang_link_workdir=None, clang_link_flags=None):
     """
     Links together the given files. The files can be LLVM IR files or object files.
@@ -436,9 +431,14 @@ def link_and_optimize(tasks, full_name, llfiles, direct_ofiles, stats_dir,
     """
     assert "/" not in full_name
 
-    llvm_link_out = options.get_build_dir(f"{full_name}-llvm-link-out.ll")
-    opt_out = options.get_build_dir(f"{full_name}-opt-out.ll")
-    jlm_opt_out = options.get_build_dir(f"{full_name}-jlm-opt-out.ll")
+    llvm_link_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-llvm-link-out.ll"))
+    opt_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-opt-out.ll"))
+    jlm_opt_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-jlm-opt-out.ll"))
+
+    if clang_link_output is None:
+        clang_link_output = f"{full_name}-clang-link-out"
+
+    clang_link_output = os.path.abspath(os.path.join(build_dir, clang_link_output))
 
     combined_env_vars = os.environ.copy()
     if env_vars is not None:
@@ -570,7 +570,7 @@ class Benchmark:
         self.linked_jlm_opt_flags = None
         # The final invocation of clang for linking, resulting in an executable
         if linker_output is not None:
-            self.clang_link_output = options.get_build_dir(linker_output)
+            self.clang_link_output = linker_output
         else:
             # None disables linking
             self.clang_link_output = None
@@ -593,6 +593,12 @@ class Benchmark:
     def get_tasks(self, stats_dir, env_vars):
         tasks = []
 
+        benchmark_build_dir = options.get_build_dir(self.name)
+        benchmark_stats_dir = options.get_stats_dir(self.name)
+
+        ensure_folder_exists(benchmark_build_dir)
+        ensure_folder_exists(benchmark_stats_dir)
+
         # Maps from the ofile path used in sources.json, to the output file produced by jlm-opt
         ofile_to_llfile = {}
         # Maps from the ofile path used in sources.json, to the compiled object file in the build directory
@@ -603,7 +609,7 @@ class Benchmark:
 
             if srcfile.kind == "C":
                 _, _, outfile = compile_file(tasks, full_name=full_name, workdir=srcfile.working_dir, cfile=srcfile.srcfile,
-                                             kind="c", stats_dir=stats_dir, env_vars=env_vars,
+                                             kind="c", build_dir=benchmark_build_dir, stats_dir=benchmark_stats_dir, env_vars=env_vars,
                                              extra_clang_flags=[*self.extra_clang_flags, *srcfile.arguments],
                                              opt_flags=self.opt_flags,
                                              jlm_opt_flags=self.jlm_opt_flags,
@@ -614,7 +620,7 @@ class Benchmark:
             elif srcfile.kind == "C-nonjlm":
                 # Compile to LLVM IR, but skip jlm-opt
                 _, _, outfile = compile_file(tasks, full_name=full_name, workdir=srcfile.working_dir, cfile=srcfile.srcfile,
-                                             kind="c", stats_dir=stats_dir, env_vars=env_vars,
+                                             kind="c", build_dir=benchmark_build_dir, stats_dir=benchmark_stats_dir, env_vars=env_vars,
                                              extra_clang_flags=[*self.extra_clang_flags_nonjlm, *srcfile.arguments],
                                              opt_flags=self.opt_flags)
 
@@ -631,8 +637,15 @@ class Benchmark:
 
             elif srcfile.kind == "Fortran":
                 # Compile Fortran to machine code
-                objectfile_out = compile_fortran_file(tasks, full_name=full_name, workdir=srcfile.working_dir,
-                                               srcfile=srcfile.srcfile, env_vars=env_vars, extra_flags=srcfile.arguments)
+                objectfile_out = compile_fortran_file(
+                    tasks,
+                    full_name=full_name,
+                    workdir=srcfile.working_dir,
+                    srcfile=srcfile.srcfile,
+                    env_vars=env_vars,
+                    extra_flags=srcfile.arguments,
+                    build_dir=benchmark_build_dir,
+                )
 
                 ofile_to_objectfile[srcfile.get_ofile_abspath()] = objectfile_out
 
@@ -652,14 +665,21 @@ class Benchmark:
                 direct_ofiles.append(ofile)
                 #raise ValueError(f"No command for producing {ofile} is known")
 
-        link_and_optimize(tasks, full_name=self.name, llfiles=llfiles, direct_ofiles=direct_ofiles,
-                          stats_dir=stats_dir, env_vars=env_vars,
-                          llvm_link_flags=self.llvm_link_flags,
-                          opt_flags=self.linked_opt_flags,
-                          jlm_opt_flags=self.linked_jlm_opt_flags,
-                          clang_link_output=self.clang_link_output,
-                          clang_link_workdir=self.clang_link_workdir,
-                          clang_link_flags=self.clang_link_flags)
+        link_and_optimize(
+            tasks,
+            full_name=self.name,
+            llfiles=llfiles,
+            direct_ofiles=direct_ofiles,
+            build_dir=benchmark_build_dir,
+            stats_dir=benchmark_stats_dir,
+            env_vars=env_vars,
+            llvm_link_flags=self.llvm_link_flags,
+            opt_flags=self.linked_opt_flags,
+            jlm_opt_flags=self.linked_jlm_opt_flags,
+            clang_link_output=self.clang_link_output,
+            clang_link_workdir=self.clang_link_workdir,
+            clang_link_flags=self.clang_link_flags,
+        )
 
         return tasks
 
@@ -870,6 +890,12 @@ def main():
     parser.add_argument('--useMem2reg', action='store_true', dest='useMem2reg',
                         help='Uses LLVM opt\'s mem2reg pass')
 
+    parser.add_argument(
+        '--variant',
+        choices=['lsr', 'no-lsr', 'm2r', 'clang-o3'],
+        default='lsr',
+        help='Compilation variant to build'
+    )
 
     args = parser.parse_args()
 
@@ -947,61 +973,50 @@ def main():
 
 
 def configure_benchmark(bench, args):
-    """
-    Called by the main() function on each benchmark to do run customization
-    """
+    if args.variant == "clang-o3":
+        bench.extra_clang_flags = ["-O3"]
+        bench.extra_clang_flags_nonjlm = ["-O3"]
+        bench.extra_clang_flags_cpp = ["-O3"]
+        bench.opt_flags = None
+        bench.jlm_opt_flags = None
+        return
 
-    # The top one leads to no tbaa info, while the bottom one includes it
-    bench.extra_clang_flags = ["-Xclang", "-disable-O0-optnone"]
-    # bench.extra_clang_flags = ["-O2", "-Xclang", "-disable-llvm-passes"]
+    bench.extra_clang_flags = [
+        "-Xclang", "-disable-O0-optnone",
+        "-DGLOBAL_SCALE_FACTOR=2400",
+    ]
 
     if args.useMem2reg:
         bench.opt_flags = ["-passes=mem2reg"]
 
-    # Configure the flags sent to jlm-opt here
-    bench.jlm_opt_flags = ["--print-andersen-analysis", "--print-store-value-forwarding", "--print-rvsdg-construction", "--print-rvsdg-destruction", "--print-rvsdg-optimization"]
-    bench.jlm_opt_flags.append("--annotations=NumMemoryStateInputsOutputs,NumLoadNodes,NumStoreNodes,NumAllocaNodes")# , "--print-aa-precision-evaluation"]
+    common_jlm_flags = [
+        "--PredicateCorrelation",
+        "--InvariantValueRedirection",
+        "--LoopUnswitching",
+        "--FunctionInlining",
+        "--CommonNodeElimination",
+        "--DeadNodeElimination",
+    ]
 
-    bench.jlm_opt_flags.append("--RvsdgTreePrinter")
+    lsr_flags = [
+        "--LoopStrengthReduction",
+        "--print-loop-strength-reduction",
+    ]
 
-    bench.jlm_opt_flags.extend(["--FunctionInlining",
-                                "--PredicateCorrelation",
-                                #"--LoopUnswitching",
-                                "--CommonNodeElimination",
-                                "--InvariantValueRedirection",
-                                "--DeadNodeElimination"])
-
-    bench.jlm_opt_flags.append("--RvsdgTreePrinter")
-
-    if args.agnosticModRef:
-        bench.jlm_opt_flags.extend(["--AAAndersenAgnostic", "--print-agnostic-mod-ref-summarization", "--print-basicencoder-encoding"])
-
-    if args.regionAwareModRef:
-        bench.jlm_opt_flags.extend(["--AAAndersenRegionAware", "--print-mod-ref-summarization", "--print-basicencoder-encoding"])
-
-    bench.jlm_opt_flags.append("--RvsdgTreePrinter")
-
-    bench.jlm_opt_flags.append("--StoreValueForwarding")
-
-    bench.jlm_opt_flags.append("--RvsdgTreePrinter")
-
-    bench.jlm_opt_flags.extend([
-        #"--LoadChainSeparation",
+    cleanup_flags = [
         "--CommonNodeElimination",
         "--InvariantValueRedirection",
-        "--NodeReduction",
-        "--DeadNodeElimination"])
+        "--DeadNodeElimination",
+    ]
 
-    bench.jlm_opt_flags.append("--RvsdgTreePrinter")
-
-    # Uncomment to disable linking
-    # bench.clang_link_output = None
-
-    # Uncomment to disable all use of jlm-opt
-    # bench.jlm_opt_flags = None
-
-    # Uncomment to disable all passes in jlm-opt
-    # bench.jlm_opt_flags = []
+    if args.variant == "m2r":
+        bench.jlm_opt_flags = None
+    elif args.variant == "no-lsr":
+        bench.jlm_opt_flags = [*common_jlm_flags, *cleanup_flags]
+    elif args.variant == "lsr":
+        bench.jlm_opt_flags = [*common_jlm_flags, *lsr_flags, *cleanup_flags]
+    else:
+        raise ValueError(f"Unknown variant: {args.variant}")
 
 
 if __name__ == "__main__":

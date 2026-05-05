@@ -21,7 +21,7 @@ else
 fi
 
 # Options added to the final ./benchmark.py invocation
-EXTRA_BENCH_OPTIONS=""
+EXTRA_BENCH_OPTIONS=''
 
 # Used to determine which benchmarks to extract
 EXTRACT_ALL=true
@@ -41,6 +41,9 @@ SOURCES_JSON=${SOURCES_JSON:-"sources/sources.json"}
 # Parameters for deciding what tasks the script should perform
 BUILD_JLM=false
 DRY_RUN=false
+SKIP_RUN=false
+VARIANTS=()
+SUITE="all"
 CREATE_JSON=false
 
 function usage()
@@ -71,6 +74,9 @@ function usage()
 	echo "  --create-json         Build all benchmarks to re-create sources.json. Implies --full-spec"
 	echo "  --clean               Delete extracted sources and build files."
 	echo "  --help                Prints this message and stops."
+	echo "  --variant <name>      Build one variant: lsr, no-lsr, m2r, clang-o3."
+  echo "                        Can be passed multiple times."
+  echo "  --all-variants        Build all variants."
 }
 
 while [[ "$#" -ge 1 ]] ; do
@@ -102,6 +108,19 @@ while [[ "$#" -ge 1 ]] ; do
 			DRY_RUN=true
 			shift
 			;;
+	  --no-run|--skip-run)
+      SKIP_RUN=true
+      shift
+      ;;
+    --variant)
+      shift
+      VARIANTS+=("$1")
+      shift
+      ;;
+    --all-variants)
+      VARIANTS=("lsr" "no-lsr" "m2r" "clang-o3")
+      shift
+      ;;
 		--do-validation)
 		    EXTRA_BENCH_OPTIONS="${EXTRA_BENCH_OPTIONS:-} --do-validation"
 			shift
@@ -184,17 +203,19 @@ while [[ "$#" -ge 1 ]] ; do
 			EXTRACT_ALL=false
 			shift
 			;;
-		--polybench)
-			EXTRA_BENCH_OPTIONS="${EXTRA_BENCH_OPTIONS:-} --filter=polybench"
-			EXTRACT_ALL=false
-			shift
-			;;
-		--embench)
-			EXTRA_BENCH_OPTIONS="${EXTRA_BENCH_OPTIONS:-} --filter=embench"
-			EXTRACT_EMBENCH=true
-			EXTRACT_ALL=false
-			shift
-			;;
+    --polybench)
+        SUITE="polybench"
+        EXTRA_BENCH_OPTIONS="${EXTRA_BENCH_OPTIONS:-} --filter=polybench"
+        EXTRACT_ALL=false
+        shift
+        ;;
+    --embench)
+        SUITE="embench"
+        EXTRA_BENCH_OPTIONS="${EXTRA_BENCH_OPTIONS:-} --filter=embench"
+        EXTRACT_EMBENCH=true
+        EXTRACT_ALL=false
+        shift
+        ;;
 		--clean)
 			echo "Deleting extracted sources"
 			just sources/programs/clean-all
@@ -213,6 +234,10 @@ while [[ "$#" -ge 1 ]] ; do
 			;;
 	esac
 done
+
+if [[ ${#VARIANTS[@]} -eq 0 ]]; then
+    VARIANTS=("lsr")
+fi
 
 # Prepare the benchmarks
 pushd sources
@@ -286,7 +311,6 @@ if [[ ${BUILD_JLM} = true ]]; then
 
 	echo "Cloning and building jlm in location: ${JLM_PATH}"
 	just clone-jlm
-	just build-release
 	just build-debug
 fi
 
@@ -312,24 +336,82 @@ echo "Starting benchmarking of jlm-opt"
 mkdir -p build statistics
 
 # Enable echoing commands to print the final benchmark.py invocation
-set -x
-#./benchmark.py --jlm-opt="${JLM_OPT}" --llvmbin="${LLVM_BIN}" --sources="${SOURCES_JSON}" -j="${PARALLEL_INVOCATIONS}" ${EXTRA_BENCH_OPTIONS:-} --regionAwareModRef --builddir build/ci --statsdir statistics/ci
+#set -x
 
-./benchmark.py --jlm-opt="${JLM_PATH}/build-release/jlm-opt" --llvmbin="${LLVM_BIN}" \
-	--sources="${SOURCES_JSON}" -j="${PARALLEL_INVOCATIONS}" ${EXTRA_BENCH_OPTIONS:-} \
-	--regionAwareModRef --builddir build/raware --statsdir statistics/raware \
-	|| true
+COMMON_BENCH_ARGS=(
+    --jlm-opt="${JLM_OPT}"
+    --llvmbin="${LLVM_BIN}"
+    --sources="${SOURCES_JSON}"
+    -j="${PARALLEL_INVOCATIONS}"
+    ${EXTRA_BENCH_OPTIONS:-}
+    --regionAwareModRef
+)
 
-#JLM_DISABLE_EXTERN_COMPRESSION=1 ./benchmark.py --jlm-opt="${JLM_PATH}/build-release/jlm-opt" --llvmbin="${LLVM_BIN}" \
-#	--sources="${SOURCES_JSON}" -j="${PARALLEL_INVOCATIONS}" ${EXTRA_BENCH_OPTIONS:-} \
-#	--regionAwareModRef --builddir build/raware --statsdir statistics/raware-nocompress \
-#	|| true
+for VARIANT in "${VARIANTS[@]}"; do
+    echo "Building variant: ${VARIANT}"
 
-./benchmark.py --jlm-opt="${JLM_PATH}/build-release/jlm-opt" --llvmbin="${LLVM_BIN}" \
-	--sources="${SOURCES_JSON}" -j="${PARALLEL_INVOCATIONS}" ${EXTRA_BENCH_OPTIONS:-} \
-	--regionAwareModRef --useMem2reg --builddir build/raware --statsdir statistics/m2r
+    EXTRA_VARIANT_ARGS=()
+
+    if [[ "$VARIANT" != "clang-o3" ]]; then
+        EXTRA_VARIANT_ARGS+=(--useMem2reg)
+    fi
+
+    ./benchmark.py "${COMMON_BENCH_ARGS[@]}" \
+        --variant="${VARIANT}" \
+        --builddir "build/${SUITE}/${VARIANT}" \
+        --statsdir "statistics/${SUITE}/${VARIANT}" \
+        "${EXTRA_VARIANT_ARGS[@]}"
+done
 
 # Finally run some data aggregation
-just aggregate
-# Also try running and printing some analysis
-just analyze-all
+#just aggregate
+## Also try running and printing some analysis
+#just analyze-all
+
+
+
+#for FILE in ./build/raware/*; do
+#    BASENAME=$(basename "$FILE")
+#
+#    [[ "$BASENAME" != *-clang-out.ll ]] && continue
+#    [[ "$BASENAME" == *utilities* ]] && continue
+#
+#    BENCHMARK=${BASENAME%+*}
+#    if [[ "$BASENAME" == polybench* ]]; then
+#      CLANG_UTIL_FILE=./build/raware/$BENCHMARK+"utilities_polybench.c-clang-out.ll"
+#
+#      clang "$FILE" "$CLANG_UTIL_FILE" -lm -o ./build/raware/$BENCHMARK-clang-final
+#
+#      if [[ "$SKIP_RUN" == false ]]; then
+#        echo -n "Running $BENCHMARK... "
+#        ./build/raware/"$BENCHMARK"-clang-final 2>&1 | sed -n '/==BEGIN/,/==END/p' > ./build/raware/"$BENCHMARK"-ref_out.txt
+#        ./build/raware/"$BENCHMARK"-clang-link-out 2>&1 | sed -n '/==BEGIN/,/==END/p' > ./build/raware/"$BENCHMARK"-test_out.txt
+#
+#        diff ./build/raware/"$BENCHMARK"-ref_out.txt ./build/raware/"$BENCHMARK"-test_out.txt > /dev/null 2>&1 && echo "PASS" || echo "FAIL"
+#      fi
+#    fi
+#
+#    if [[ "$BASENAME" == embench* ]]; then
+#      BENCHMARK=${BASENAME%+*}
+#
+#      # Collect all files for this benchmark
+#      FILES=$(ls ./build/raware/${BENCHMARK}+*-clang-out.ll)
+#
+#      # Build once per benchmark (avoid rebuilding multiple times)
+#      if [[ ! -f ./build/raware/$BENCHMARK-clang-final ]]; then
+#        clang $FILES -lm -o ./build/raware/$BENCHMARK-clang-final
+#      fi
+#
+#
+#      if [[ "$SKIP_RUN" == false ]]; then
+#        echo "Running $BENCHMARK..."
+#        ./build/raware/"$BENCHMARK"-clang-link-out && echo "PASS" || echo "FAIL"
+#      fi
+#    fi
+#
+#    taskset -c 0,3 hyperfine --prepare=true --warmup 3 --runs 20 --shell=none --ignore-failure \
+#        ./build/raware/"$BENCHMARK"-clang-final \
+#        ./build/raware/"$BENCHMARK"-clang-link-out
+#    echo
+#
+#done

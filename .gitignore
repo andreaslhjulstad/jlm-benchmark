@@ -7,3 +7,6 @@ jlm-benchmark.sif
 archives/*
 results/
 .run.sh.progress
+.idea/
+sources/
+analysis/results/
