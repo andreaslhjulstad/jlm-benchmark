@@ -436,9 +436,13 @@ def link_and_optimize(tasks, full_name, llfiles, direct_ofiles, build_dir, stats
     jlm_opt_out = os.path.abspath(os.path.join(build_dir, f"{full_name}-jlm-opt-out.ll"))
 
     if clang_link_output is None:
-        clang_link_output = f"{full_name}-clang-link-out"
+        output_name = f"{full_name}-clang-link-out"
+    else:
+        output_name = clang_link_output  # already the benchmark name
 
-    clang_link_output = os.path.abspath(os.path.join(build_dir, clang_link_output))
+    clang_link_output = os.path.abspath(
+        os.path.join(build_dir, f"{output_name}-clang-link-out")
+    )
 
     combined_env_vars = os.environ.copy()
     if env_vars is not None:

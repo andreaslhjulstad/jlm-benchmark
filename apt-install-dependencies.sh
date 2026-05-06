@@ -6,7 +6,7 @@ apt-get install -y \
     just bear make ninja-build g++ gfortran autoconf texinfo \
     llvm-18-dev clang-18 clang-format-18 libgtest-dev \
     lmod locales doxygen unzip git \
-    \
+    hyperfine \
     \
     build-essential gcc-multilib gcc-mingw-w64 libasound2-dev libpulse-dev libdbus-1-dev \
     libfontconfig-dev libfreetype-dev libgnutls28-dev libgl-dev libunwind-dev \
