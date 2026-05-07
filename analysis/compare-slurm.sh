@@ -5,6 +5,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
+#SBATCH --cpu-freq=highm1
+#SBATCH --constraint=56c
 #SBATCH --mem=2G
 #SBATCH --time=48:00:00
 #SBATCH -o slurm-log/compare.%A.%a.out
@@ -28,6 +30,10 @@ COMPARISONS=(
     "lsr no-lsr"
     "lsr clang-o3"
     "lsr m2r"
+)
+
+SKIP_BENCHMARKS=(
+    "embench-picojpeg"
 )
 
 JOBS=()
@@ -63,6 +69,13 @@ if [[ "${SLURM_ARRAY_TASK_ID}" -ge "${#JOBS[@]}" ]]; then
 fi
 
 read -r SUITE LEFT_VARIANT RIGHT_VARIANT BENCHMARK <<< "${JOBS[$SLURM_ARRAY_TASK_ID]}"
+
+for SKIP in "${SKIP_BENCHMARKS[@]}"; do
+    if [[ "$BENCHMARK" == "$SKIP" ]]; then
+        echo "Skipping known-bad benchmark: ${BENCHMARK}"
+        exit 0
+    fi
+done
 
 COMPARE_NAME="${LEFT_VARIANT}-vs-${RIGHT_VARIANT}"
 
@@ -111,8 +124,8 @@ fi
 
 hyperfine \
     --prepare=true \
-    --warmup 3 \
-    --runs 20 \
+    --warmup 5 \
+    --runs 100 \
     --shell=none \
     --ignore-failure \
     --export-json "$RAW_JSON" \
