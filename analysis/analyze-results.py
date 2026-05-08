@@ -39,10 +39,29 @@ def load_result(path: Path):
     # speedup > 1 means LSR is faster
     speedup = other_mean / lsr_mean
 
-    # Error propagation for ratio: r = a / b
+    # Computes standard deviation:
+
+    # # Error propagation for ratio: r = a / b
+    # speedup_std = speedup * math.sqrt(
+    #     (other_std / other_mean) ** 2 +
+    #     (lsr_std / lsr_mean) ** 2
+    # )
+
+    # percent = (speedup - 1.0) * 100.0
+    # percent_std = speedup_std * 100.0
+
+    lsr_n = len(lsr["times"])
+    other_n = len(other["times"])
+
+    lsr_se = lsr_std / math.sqrt(lsr_n)
+    other_se = other_std / math.sqrt(other_n)
+
+    # Computes standard error:
+    
+    # Error propagation for ratio using standard error of the mean
     speedup_std = speedup * math.sqrt(
-        (other_std / other_mean) ** 2 +
-        (lsr_std / lsr_mean) ** 2
+        (other_se / other_mean) ** 2 +
+        (lsr_se / lsr_mean) ** 2
     )
 
     percent = (speedup - 1.0) * 100.0
